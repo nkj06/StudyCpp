@@ -8,7 +8,7 @@ private:
 
 public:
 	RandNum() { randomize(); }
-	void Generate() { num = random(100) + 1; }
+	void Generate() { num = random(100) + 1; } 
 	BOOL Compare(int input) {
 		if (input == num) {
 			printf("맞췄습니다.\n");
@@ -24,14 +24,14 @@ public:
 	}
 };
 
-class Ask
+class Ask 
 {
 private:
 	int input;
 
 public:
 	void Prompt() { printf("\n제가 만든 숫자를 맞춰 보세요.\n"); }
-	BOOL AskUser() {
+	BOOL AskNumber() {
 		printf("숫자를 입력하세요(끝낼 때는 999) : ");
 		scanf("%d", &input);
 		if (input == 999) {
@@ -44,15 +44,15 @@ public:
 
 int main()
 {
-	RandNum R;
+	RandNum R; // 클래스 선언
 	Ask A;
 
-	for (;;) {
-		R.Generate();
+	while (1) { // 무한루프
+		R.Generate(); // 정의로 이동 F12, Back은 Ctrl + -
 		A.Prompt();
 		for (;;) {
-			if (A.AskUser()) {
-				exit(0);
+			if (A.AskNumber()) {
+				exit(EXIT_SUCCESS); // 빠져나오는 거, EXIT_SUCCESS 대신 0을 써도 됨
 			}
 			if (R.Compare(A.GetInput())) {
 				break;
@@ -60,4 +60,3 @@ int main()
 		}
 	}
 }
-
